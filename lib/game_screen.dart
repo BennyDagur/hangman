@@ -1,4 +1,4 @@
-//TODO Implement the ability to input a character
+
 
 import 'package:flutter/material.dart';
 import 'list_of_words.dart';
@@ -24,8 +24,10 @@ ListOfWords listOfWords = ListOfWords();
           //TODO Place for the hangman art - which will update as the game progresses (with each failure)
           Expanded(
                   child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                    ),
                     alignment: Alignment.center,
-                    color: Colors.yellow,
                   ),
                 ),
           Expanded(child: Column(
@@ -35,18 +37,29 @@ ListOfWords listOfWords = ListOfWords();
               Expanded(
                 flex: 3,
                 child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(),
+                  ),
                   alignment: Alignment.center,
                   child: Text(listOfWords.getWords()),
-                  color: Colors.red,
+                ),
+              ),
+              //TODO Implement the ability to input a character
+              TextField(
+                decoration: InputDecoration(
+                  hintText: 'Type here to guess',
+                  border: OutlineInputBorder(),
                 ),
               ),
               //TODO Place to keep track of incorrectly guessed letters.
               Expanded(
                 flex: 6,
                 child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(),
+                  ),
                   alignment: Alignment.center,
                   child: Text('_'),
-                  color: Colors.green,
                 ),
               ),
             ],
