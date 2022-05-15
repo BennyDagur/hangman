@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+List<String> theWords = [
+  'abc','bab','bing'
+];
+
+
 class ListOfWords{
 
-  List<String> theWords = [
-    'abc','bab','bing'
-  ];
 
   List<String> wrongLetters = [
 
   ];
 
-  int random = Random().nextInt(3);
+  int random = Random().nextInt(theWords.length);
 
-  String getWords(){
-    return theWords[random];
+  int wordLength(){
+    return theWords[random].length;
   }
 
 

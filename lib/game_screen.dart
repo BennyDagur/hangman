@@ -1,7 +1,8 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:hangman/constants.dart';
 import 'list_of_words.dart';
+
+ListOfWords listOfWords = ListOfWords();
 
 class GameScreen extends StatefulWidget {
   @override
@@ -10,7 +11,7 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
 
-ListOfWords listOfWords = ListOfWords();
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +42,14 @@ ListOfWords listOfWords = ListOfWords();
                     border: Border.all(),
                   ),
                   alignment: Alignment.center,
-                  child: Text(listOfWords.getWords()),
+                  child: Text(blank, style: kWordStyle,),
                 ),
               ),
               //TODO Implement the ability to input a character
               TextField(
+                onSubmitted: (text){
+                  
+                },
                 decoration: InputDecoration(
                   hintText: 'Type here to guess',
                   border: OutlineInputBorder(),
@@ -59,7 +63,7 @@ ListOfWords listOfWords = ListOfWords();
                     border: Border.all(),
                   ),
                   alignment: Alignment.center,
-                  child: Text('_'),
+                  child: Text('-', style: kWordStyle,),
                 ),
               ),
             ],
@@ -70,3 +74,5 @@ ListOfWords listOfWords = ListOfWords();
     );
   }
 }
+
+String blank = ('-'*listOfWords.wordLength());
