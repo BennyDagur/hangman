@@ -4,21 +4,17 @@ import 'dart:math';
 List<String> theWords = [
   'abc','bab','bing'
 ];
-
+int random = Random().nextInt(theWords.length);
 
 class ListOfWords{
 
 
-  List<String> wrongLetters = [
-
-  ];
-
-  int random = Random().nextInt(theWords.length);
 
   int wordLength(){
     return theWords[random].length;
   }
 
+  String word = theWords[random];
 
 
 }
