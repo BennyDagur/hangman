@@ -14,7 +14,7 @@ class ListOfWords{
     return theWords[random].length;
   }
 
-  String word = theWords[random];
+  String theWord = theWords[random];
 
 
 }

@@ -11,6 +11,7 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
 
+  int winLose = 0;
   final clearText = TextEditingController();
 
   @override
@@ -34,30 +35,44 @@ class _GameScreenState extends State<GameScreen> {
           Expanded(child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              //TODO UI that shows how many characters are in the word/sentence.
               Expanded(
                 flex: 3,
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(),
                   ),
-                  alignment: Alignment.center,
-                  child: Text(rightBlank, style: kWordStyle,),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      for(String line in wordLines)
+                      Text(line, style: kWordStyle,)
+                    ],
+                  ),
                 ),
               ),
-              //TODO Implement the ability to input a character
+              //TODO Add a win/lose function
               TextField(
                 controller: clearText,
                 maxLength: 1,
                 onSubmitted: (text){
-                  if(listOfWords.word.contains(text)){
-                  print('Yep');
+                  setState(() {});
+                  if(listOfWords.theWord.contains(text)){
+                    for(int i = 0; listOfWords.theWord.length > i; i++)
+                      if(listOfWords.theWord[i] == text) {
+                        wordLines[i] = text;
+                        if(wordLines.join("") == listOfWords.theWord){
+                          winLose = 1;
+                          Navigator.pushNamed(context, 'WinLose');
+                        }
+                      }
+                  clearText.clear();
                 } else {
-                    setState(() {
-                      if(wrongBlank.contains(text)) {}
+                    if(wrongBlank.contains(text)) {}
                       else {wrongBlank += text;}
+                      if(wrongBlank.length == 6){
+                        winLose = 2;
+                      }
                       clearText.clear();
-                    });
                   }},
                 decoration: InputDecoration(
                   counterText: '',
@@ -65,7 +80,6 @@ class _GameScreenState extends State<GameScreen> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              //TODO Place to keep track of incorrectly guessed letters.
               Expanded(
                 flex: 6,
                 child: Container(
@@ -87,3 +101,4 @@ class _GameScreenState extends State<GameScreen> {
 
 String rightBlank = ('-,'*listOfWords.wordLength());
 String wrongBlank = ('');
+List<String> wordLines = rightBlank.split(",");
