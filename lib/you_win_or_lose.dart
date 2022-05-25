@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:hangman/constants.dart';
+import 'package:hangman/game_screen.dart';
+import 'package:hangman/list_of_words.dart';
 
 class YouWinLose extends StatefulWidget {
   const YouWinLose({Key? key}) : super(key: key);
@@ -17,17 +21,15 @@ class _YouWinLoseState extends State<YouWinLose> {
         children: [
           Center(
             child: Container(
-              child: Text('YOU WIN!', style: kWinLoseStyle,),
+              child: Text('YOU $winLose!', style: kWinLoseStyle,),
             ),
           ),
-          Center(
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Play again?', style: kWinLoseStyle,),
-            ),
-          )
+          SizedBox(height: 10,),
+          MaterialButton(
+            onPressed: (){Navigator.pushNamed(context, 'StartMenu');},
+            color: Colors.blue,
+            child: Text('Play again?', style: kWinLoseStyle,),
+          ),
         ],
       ),
     );

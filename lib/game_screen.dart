@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hangman/constants.dart';
 import 'list_of_words.dart';
+import 'dart:math';
 
 ListOfWords listOfWords = ListOfWords();
+String winLose = '';
 
 class GameScreen extends StatefulWidget {
   @override
@@ -11,8 +13,9 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
 
-  int winLose = 0;
   final clearText = TextEditingController();
+
+  List<String> wordLines = lines().wordLines().split(",");
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +33,7 @@ class _GameScreenState extends State<GameScreen> {
                       border: Border.all(),
                     ),
                     alignment: Alignment.center,
+                    child: Image(image: AssetImage('images/${wrongBlank.length}hang.png')),
                   ),
                 ),
           Expanded(child: Column(
@@ -56,27 +60,30 @@ class _GameScreenState extends State<GameScreen> {
                 maxLength: 1,
                 onSubmitted: (text){
                   setState(() {});
-                  if(listOfWords.theWord.contains(text)){
-                    for(int i = 0; listOfWords.theWord.length > i; i++)
-                      if(listOfWords.theWord[i] == text) {
-                        wordLines[i] = text;
-                        if(wordLines.join("") == listOfWords.theWord){
-                          winLose = 1;
+                  if(listOfWords.theWord().toLowerCase().contains(text.toLowerCase())){
+                    for(int i = 0; listOfWords.theWord().length > i; i++)
+                      if(listOfWords.theWord()[i].toLowerCase() == text.toLowerCase()) {
+                        wordLines[i] = listOfWords.theWord()[i];
+                        if(wordLines.join() == listOfWords.theWord()){
+                          winLose = 'WIN';
                           Navigator.pushNamed(context, 'WinLose');
+                          wrongBlank = '';
                         }
                       }
                   clearText.clear();
                 } else {
-                    if(wrongBlank.contains(text)) {}
-                      else {wrongBlank += text;}
+                    if(wrongBlank.contains(text.toLowerCase())) {}
+                      else {wrongBlank += text.toLowerCase();}
                       if(wrongBlank.length == 6){
-                        winLose = 2;
+                        winLose = 'LOSE';
+                        Navigator.pushNamed(context, 'WinLose');
+                        wrongBlank = '';
                       }
                       clearText.clear();
                   }},
                 decoration: InputDecoration(
                   counterText: '',
-                  hintText: 'Type here to guess',
+                  hintText: '${listOfWords.theWord()}',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -99,6 +106,12 @@ class _GameScreenState extends State<GameScreen> {
   }
 }
 
-String rightBlank = ('-,'*listOfWords.wordLength());
+String rightBlank = ('-,'*listOfWords.theWord().length);
 String wrongBlank = ('');
-List<String> wordLines = rightBlank.split(",");
+
+class lines {
+  String wordLines(){
+    String line = '-,'*listOfWords.theWord().length;
+    return line;
+  }
+}

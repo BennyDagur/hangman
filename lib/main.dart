@@ -12,11 +12,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: 'Game',
+      initialRoute: 'StartMenu',
       routes: {
+        'StartMenu': (context) => StartMenu(),
         'Game': (context) => GameScreen(),
         'WinLose': (context) => YouWinLose(),
       },
+        theme: ThemeData().copyWith(
+          scaffoldBackgroundColor: Colors.white
+        ),
     );
   }
 }

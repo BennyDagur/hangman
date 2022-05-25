@@ -8,3 +8,7 @@ const kWordStyle = TextStyle(
 const kWinLoseStyle = TextStyle(
   fontSize: 50,
 );
+
+const kStartTextStyle = TextStyle(
+  fontSize: 40,
+);
