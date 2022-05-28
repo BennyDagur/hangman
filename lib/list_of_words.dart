@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-List<String> theWords = [
-  'abcde','bab','bing'
+List<String> wordContainer = [
+  'abcde','bab','bing', 'God Emperor of Mankind'
 ];
 
-int random = Random().nextInt(theWords.length);
+int random = Random().nextInt(wordContainer.length);
 
 int randomize() {
- return random = Random().nextInt(theWords.length);
+ return random = Random().nextInt(wordContainer.length);
 }
 
 class ListOfWords{
@@ -16,11 +16,11 @@ class ListOfWords{
 
 
   int wordLength(){
-    return theWords[random].length;
+    return wordContainer[random].length;
   }
 
   String theWord(){
-    return theWords[random];
+    return wordContainer[random];
   }
 
 

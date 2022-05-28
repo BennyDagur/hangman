@@ -5,14 +5,14 @@ import 'package:hangman/constants.dart';
 import 'package:hangman/game_screen.dart';
 import 'package:hangman/list_of_words.dart';
 
-class YouWinLose extends StatefulWidget {
-  const YouWinLose({Key? key}) : super(key: key);
+class EndScreen extends StatefulWidget {
+  const EndScreen({Key? key}) : super(key: key);
 
   @override
-  State<YouWinLose> createState() => _YouWinLoseState();
+  State<EndScreen> createState() => _EndScreenState();
 }
 
-class _YouWinLoseState extends State<YouWinLose> {
+class _EndScreenState extends State<EndScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +21,7 @@ class _YouWinLoseState extends State<YouWinLose> {
         children: [
           Center(
             child: Container(
-              child: Text('YOU $winLose!', style: kWinLoseStyle,),
+              child: Text('You $winLose! The word was ${wordContainer[random]}', style: kWinLoseStyle,),
             ),
           ),
           SizedBox(height: 10,),

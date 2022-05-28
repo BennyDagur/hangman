@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const kWordStyle = TextStyle(
-  fontSize: 50.0,
+  fontSize: 40.0,
   letterSpacing: 3,
 );
 

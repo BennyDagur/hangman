@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'game_screen.dart';
 import 'starting_menu.dart';
-import 'you_win_or_lose.dart';
+import 'end_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'StartMenu': (context) => StartMenu(),
         'Game': (context) => GameScreen(),
-        'WinLose': (context) => YouWinLose(),
+        'End': (context) => EndScreen(),
       },
         theme: ThemeData().copyWith(
           scaffoldBackgroundColor: Colors.white

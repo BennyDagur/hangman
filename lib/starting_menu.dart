@@ -14,6 +14,9 @@ class StartMenu extends StatefulWidget {
 }
 
 class _StartMenuState extends State<StartMenu> {
+
+  final textController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +31,8 @@ class _StartMenuState extends State<StartMenu> {
               onPressed: () {
                 setState(() {});
                 lines().wordLines();
-                random = Random().nextInt(theWords.length);
+                randomize();
+                wrongBlank = '';
                 Navigator.pushNamed(context, 'Game');
                 },
               color: Colors.blue,
@@ -36,11 +40,22 @@ class _StartMenuState extends State<StartMenu> {
             ),
           ),
           SizedBox(height: 10,),
-          MaterialButton(
-            onPressed: ()
-            {Navigator.pushNamed(context, 'WinLose');},
-            color: Colors.red,
-            child: Text('Rules', style: kWinLoseStyle,),
+          Container(
+            width: 175,
+            child: TextField(
+              controller: textController,
+              onSubmitted: (text){
+                if(text.trim().isEmpty) {}
+                else {
+                wordContainer.add(text);
+                }
+              },
+              decoration: InputDecoration(
+                hintText: ('Add a custom word'),
+                border: OutlineInputBorder(),
+
+              ),
+            ),
           ),
         ],
       ),
