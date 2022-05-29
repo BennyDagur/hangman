@@ -9,12 +9,11 @@ String winLose = '';
 String rightBlank = ('-,'*listOfWords.theWord().length);
 String wrongBlank = ('');
 
-class lines {
-  String wordLines(){
+String Lines(){
     String line = '-,'*listOfWords.theWord().length;
     return line;
   }
-}
+
 
 class GameScreen extends StatefulWidget {
   @override
@@ -25,7 +24,7 @@ class _GameScreenState extends State<GameScreen> {
 
   final textController = TextEditingController();
 
-  List<String> wordLines = lines().wordLines().split(",");
+  List<String> wordLines = Lines().split(",");
 
   List<String> spaces() {
     for(int num = 0; listOfWords.theWord().length > num; num++)

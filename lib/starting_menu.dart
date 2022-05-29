@@ -30,7 +30,7 @@ class _StartMenuState extends State<StartMenu> {
             child: MaterialButton(
               onPressed: () {
                 setState(() {});
-                lines().wordLines();
+                Lines();
                 randomize();
                 wrongBlank = '';
                 Navigator.pushNamed(context, 'Game');
@@ -48,6 +48,7 @@ class _StartMenuState extends State<StartMenu> {
                 if(text.trim().isEmpty) {}
                 else {
                 wordContainer.add(text);
+                textController.clear();
                 }
               },
               decoration: InputDecoration(
